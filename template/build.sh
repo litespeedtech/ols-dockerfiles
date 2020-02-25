@@ -3,7 +3,7 @@ OLS_VERSION=''
 PHP_VERSION=''
 PUSH=''
 CONFIG=''
-TAG='off'
+TAG=''
 BUILDER='litespeedtech'
 REPO='openlitespeed-beta'
 
@@ -25,11 +25,7 @@ build_image(){
         help_message
     else
         echo "${1} ${2}"
-        if [ "${TAG}" != 'off' ]; then
-            docker build . --tag ${BUILDER}/${REPO}:${TAG} --build-arg OLS_VERSION=${1} --build-arg PHP_VERSION=${2}
-        else
-            docker build . --tag ${BUILDER}/${REPO}:${1}-${2} --build-arg OLS_VERSION=${1} --build-arg PHP_VERSION=${2}
-        fi    
+        docker build . --tag ${BUILDER}/${REPO}:${1}-${2} --build-arg OLS_VERSION=${1} --build-arg PHP_VERSION=${2}
     fi    
 }
 
@@ -57,8 +53,9 @@ push_image(){
             CONFIG=$(echo --config ~/.docker/litespeedtech)
         fi
         docker ${CONFIG} push ${BUILDER}/${REPO}:${1}-${2}
-        if [ "${TAG}" != 'off' ]; then
-            docker ${CONFIG} push ${BUILDER}/${REPO}:${TAG}
+        if [ ! -z "${TAG}" ]; then
+            docker tag ${BUILDER}/${REPO}:${1}-${2} ${BUILDER}/${REPO}:${3}
+            docker ${CONFIG} push ${BUILDER}/${REPO}:${3}
         fi
     else
         echo 'Skip Push.'    
@@ -66,7 +63,7 @@ push_image(){
 }
 
 main(){
-    build_image ${OLS_VERSION} ${PHP_VERSION} ${TAG}
+    build_image ${OLS_VERSION} ${PHP_VERSION}
     test_image ${OLS_VERSION} ${PHP_VERSION}
     push_image ${OLS_VERSION} ${PHP_VERSION} ${TAG}
 }
@@ -86,9 +83,7 @@ while [ ! -z "${1}" ]; do
             PHP_VERSION="${1}"
             ;;
         -tag | -TAG | -T) shift
-            if [ "${1}" = 'latest' ]; then
-                TAG="${1}"
-            fi    
+            TAG="${1}"
             ;;       
         --push ) shift
             PUSH=true
@@ -99,5 +94,5 @@ while [ ! -z "${1}" ]; do
     esac
     shift
 done
-echo "TE $test"
+
 main
