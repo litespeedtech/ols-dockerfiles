@@ -97,5 +97,5 @@ while [ ! -z "${1}" ]; do
     esac
     shift
 done
-
+echo "TE $test"
 main
