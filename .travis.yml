@@ -1,0 +1,34 @@
+language: bash
+
+sudo: 'required'
+
+notifications:
+  email:
+    on_success: never
+    on_failure: always
+  slack:
+    secure: CqIoSy+glCYJ1YqeA8XuOxuY48kaKKefwkkCgCKIbajW7MWiFuW8Yo2FSNTSV2B/iq/n/quYBYdHFiC53CjxZ1ur/3BYewP2rZlf+WtrdJB/JLDMfrya95L0FUjk7nEBx2dX9Poqm1gXfpBdN1xu5bT3NXx+tq+HpnCVDX9qt6lZuTYV45Vn8bie+GYwMcnrfQYwESY0NT7uVxVQyfuHN793sItkoo6740y5CqF5ylDp+bWWK34TvjA/cH1J9ZDwBMX4C7cubY5JGNDA64Jd5Dj0spgU5xE3pzVxNCq2LE2C5ebTXnaCbth9ZjSf2ntlR4ZszSCE0ADa1kIJHEpasyEGXUGUAW61C1XilKZwWWOMOtPmx5YG0JvS3decsbg1wZiwVjoADV0/C6qSeU/k1H99cgg7sbZyew/v4aRyyowyga+wcEJauMOnOWLQgCgXjUHTUMoL+V1Fv37BocQiwL+YxRA/tf4+5wtSo26qan/kLLRwBj9SJqcD2tlBlMURj9W3aqaFjxQHutqzcin7EOQOaCHLThwyg7O2Gdz+kGmGZSP/J9sIfJ1rugX6uklxfJseQgT9yuoPAwUyZhtbqh2x77F9hA7X+ferjRA2UYZTrDIbdk5iRlW0vWrHZcQa6ECB5Oqh2hr3M6iYPUvxqorZb9kXuBoZrH21+6Tc/9s=
+    template:
+      - "Repo %{repository_slug} *%{result}* build (<%{build_url}|#%{build_number}>) for commit (<%{compare_url}|%{commit}>)"
+      - "%{author}: _%{commit_message}_"
+      - "Execution time: *%{duration}*"
+      - "Message: *%{message}*"
+    on_success: always
+
+services:
+  - docker
+env:
+  - OLS_VERSION=1.6.9 PHP_VERSION=lsphp74 FOLDER=template TAG=latest
+  - OLS_VERSION=1.6.9 PHP_VERSION=lsphp74 FOLDER=template
+  - OLS_VERSION=1.6.9 PHP_VERSION=lsphp73 FOLDER=template
+  - OLS_VERSION=1.5.11 PHP_VERSION=lsphp74 FOLDER=template  
+  - OLS_VERSION=1.5.11 PHP_VERSION=lsphp73 FOLDER=template
+
+script:
+  - |
+    if [ $TRAVIS_BRANCH == "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
+        echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        cd $FOLDER && ./build.sh -ols $OLS_VERSION -php $PHP_VERSION -tag $TAG --push
+    else
+        cd $FOLDER && ./build.sh -ols $OLS_VERSION -php $PHP_VERSION
+    fi    
