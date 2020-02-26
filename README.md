@@ -30,12 +30,12 @@ or specify the OpenLiteSpeed version with lsphp version
 docker pull litespeedtech/openlitespeed:1.6.9-lsphp74
 ```
 ### Starting a Container
-
 ```
-docker run -it litespeedtech/openlitespeed:latest bash
+docker run -p 7080:7080 -p 80:80 -p 443:443 -it litespeedtech/openlitespeed:latest
 ```
+You can also run with daemon mode, like so:
 ```
-docker run -it litespeedtech/openlitespeed:1.6.9-lsphp74 bash
+docker run -d -p 7080:7080 -p 80:80 -p 443:443 -it litespeedtech/openlitespeed:latest
 ```
 ## Support & Feedback
 If you still have a question after using OpenLiteSpeed Docker, you have a few options.
