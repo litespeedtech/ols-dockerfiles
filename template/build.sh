@@ -5,7 +5,7 @@ PUSH=''
 CONFIG=''
 TAG=''
 BUILDER='litespeedtech'
-REPO='openlitespeed-beta'
+REPO='openlitespeed'
 
 help_message(){
     echo 'Command [-ols XX] [-php lsphpXX]'
