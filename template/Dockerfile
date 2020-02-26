@@ -8,7 +8,8 @@ ARG PHP_VERSION
 RUN apt-get update && apt-get install wget curl cron tzdata -y
 
 RUN wget https://openlitespeed.org/preuse/openlitespeed-$OLS_VERSION.tgz && \
-    tar xzvf openlitespeed-$OLS_VERSION.tgz && cd openlitespeed && ./install.sh && rm -rf /openlitespeed
+    tar xzf openlitespeed-$OLS_VERSION.tgz && cd openlitespeed && ./install.sh && \
+    echo 'cloud-docker' > /usr/local/lsws/PLAT && rm -rf /openlitespeed
 
 RUN apt-get install mysql-client $PHP_VERSION $PHP_VERSION-common $PHP_VERSION-mysql $PHP_VERSION-opcache \
     $PHP_VERSION-curl $PHP_VERSION-json $PHP_VERSION-imagick $PHP_VERSION-redis $PHP_VERSION-memcached $PHP_VERSION-intl -y
