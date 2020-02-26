@@ -3,10 +3,10 @@
 [![OpenLiteSpeed](https://img.shields.io/badge/openlitespeed-1.6.9-informational?style=flat&color=blue)](https://hub.docker.com/r/litespeedtech/openlitespeed)
 [![docker pulls](https://img.shields.io/docker/pulls/litespeedtech/openlitespeed?style=flat&color=blue)](https://hub.docker.com/r/litespeedtech/openlitespeed)
 
-Install a Lightweight WordPress container with OpenLiteSpeed [Edge / Stable] version based on Ubuntu 18.04 Linux.
+Install a lightweight OpenLiteSpeed container using either the Edge or Stable version in Ubuntu 18.04 Linux.
 
 ### Prerequisites
-1. [Install Docker](https://www.docker.com/)
+*  [Install Docker](https://www.docker.com/)
 
 ## Build Components
 The system will regulary build both OpenLiteSpeed Edge and Latest stable versions, along with the last two PHP versions.
@@ -16,8 +16,7 @@ The system will regulary build both OpenLiteSpeed Edge and Latest stable version
 |Linux|Ubuntu 18.04|
 |OpenLiteSpeed|[Edge stable version](https://openlitespeed.org/release-log/version-1-6-x)|
 |OpenLiteSpeed|[Latest stable version](https://openlitespeed.org/release-log/version-1-5-x)|
-|PHP|[Stable version: 7.4](http://rpms.litespeedtech.com/debian/)|
-|PHP|[Stable version: 7.3](http://rpms.litespeedtech.com/debian/)|
+|PHP|[Latest stable version](http://rpms.litespeedtech.com/debian/)|
 
 ## Usage
 ### Download an image
@@ -31,12 +30,18 @@ docker pull litespeedtech/openlitespeed:1.6.9-lsphp74
 ```
 ### Starting a Container
 ```
-docker run -p 7080:7080 -p 80:80 -p 443:443 -it litespeedtech/openlitespeed:latest
+docker run --name openlitespeed -p 7080:7080 -p 80:80 -p 443:443 -it litespeedtech/openlitespeed:latest
 ```
-You can also run with daemon mode, like so:
+You can also run with Detached mode, like so:
 ```
-docker run -d -p 7080:7080 -p 80:80 -p 443:443 -it litespeedtech/openlitespeed:latest
+docker run -d --name openlitespeed -p 7080:7080 -p 80:80 -p 443:443 -it litespeedtech/openlitespeed:latest
 ```
+### Stopping a Container
+Feel free to substitute the "openlitespeed" to the "Container_ID" if you did not define any name for the container.
+```
+docker stop openlitespeed
+```
+
 ## Support & Feedback
 If you still have a question after using OpenLiteSpeed Docker, you have a few options.
 * Join [the GoLiteSpeed Slack community](litespeedtech.com/slack) for real-time discussion
