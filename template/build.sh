@@ -10,7 +10,7 @@ REPO='openlitespeed'
 help_message(){
     echo 'Command [-ols XX] [-php lsphpXX]'
     echo 'Command [-ols XX] [-php lsphpXX] --push'
-    echo 'Example: build.sh -ols 1.6.8 -php lsphp74 --push'
+    echo 'Example: build.sh -ols 1.6.9 -php lsphp74 --push'
     exit 0
 }
 

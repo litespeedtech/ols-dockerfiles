@@ -9,7 +9,7 @@ Install a Lightweight WordPress container with OpenLiteSpeed [Edge / Stable] ver
 1. [Install Docker](https://www.docker.com/)
 
 ## Build Components
-System will regulary build both OpenLiteSpeed Edge and Latest stable versions with last 2 PHP versions.
+The system will regulary build both OpenLiteSpeed Edge and Latest stable versions, along with the last two PHP versions.
 
 |Component|Version|
 | :-------------: | :-------------: |
@@ -31,7 +31,12 @@ docker pull litespeedtech/openlitespeed:1.6.9-lsphp74
 ```
 ### Starting a Container
 
-
+```
+docker run -it litespeedtech/openlitespeed:latest bash
+```
+```
+docker run -it litespeedtech/openlitespeed:1.6.9-lsphp74 bash
+```
 ## Support & Feedback
 If you still have a question after using OpenLiteSpeed Docker, you have a few options.
 * Join [the GoLiteSpeed Slack community](litespeedtech.com/slack) for real-time discussion
