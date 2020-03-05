@@ -22,3 +22,6 @@ vhTemplate docker {
 }
 
 " >> /usr/local/lsws/conf/httpd_config.conf
+
+mkdir -p /var/www/vhosts/localhost/{html,logs,certs}
+chown 1000:1000 /var/www/vhosts/localhost/ -R
