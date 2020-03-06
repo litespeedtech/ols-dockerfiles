@@ -38,6 +38,19 @@ You can also run with Detached mode, like so:
 ```
 docker run -d --name openlitespeed -p 7080:7080 -p 80:80 -p 443:443 -it litespeedtech/openlitespeed:latest
 ```
+Tip, you can get rid of `-p 7080:7080` from the command if you don’t need the web admin access.  
+
+### Verify
+We can add a sample page to make sure server is working correctly. First, we want to login to the container and add a test file. 
+```
+docker exec -it openlitespeed bash
+```
+We should see **/var/www/vhosts/** as our default `WORKDIR`. Since the default document root path is **/var/www/vhosts/localhost/html**. Simply add the following command to index.php file. 
+```
+echo '<?php phpinfo();' > localhost/html/index.php
+```
+Now we can verify it from the browser with a public server IP address or pointed Domain on both HTTP/HTTPS. 
+
 ### Stopping a Container
 Feel free to substitute the "openlitespeed" to the "Container_ID" if you did not define any name for the container.
 ```

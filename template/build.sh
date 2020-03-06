@@ -6,11 +6,19 @@ CONFIG=''
 TAG=''
 BUILDER='litespeedtech'
 REPO='openlitespeed'
+EPACE='        '
+
+echow(){
+    FLAG=${1}
+    shift
+    echo -e "\033[1m${EPACE}${FLAG}\033[0m${@}"
+}
 
 help_message(){
-    echo 'Command [-ols XX] [-php lsphpXX]'
-    echo 'Command [-ols XX] [-php lsphpXX] --push'
-    echo 'Example: build.sh -ols 1.6.9 -php lsphp74 --push'
+    echow '-O, --ols [VERSION] -P, --php [lsphpVERSION]'
+    echo "${EPACE}${EPACE}Example: bash build.sh --ols 1.6.9 --php lsphp7.4"
+    echow '--push'
+    echo "${EPACE}${EPACE}Example: build.sh --ols 1.6.9 --php lsphp74 --push, will push to the dockerhub"
     exit 0
 }
 
@@ -74,15 +82,15 @@ while [ ! -z "${1}" ]; do
         -[hH] | -help | --help)
             help_message
             ;;
-        -ols | -OLS_VERSION | -O) shift
+        -[oO] | -ols | --ols) shift
             check_input "${1}"
             OLS_VERSION="${1}"
             ;;
-        -php | -PHP_VERSION | -P) shift
+        -[pP] | -php | --php) shift
             check_input "${1}"
             PHP_VERSION="${1}"
             ;;
-        -tag | -TAG | -T) shift
+        -[tT] | -tag | -TAG | --tag) shift
             TAG="${1}"
             ;;       
         --push ) shift

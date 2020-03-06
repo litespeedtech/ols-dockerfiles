@@ -1,4 +1,3 @@
-#FROM debian:jessie-slim
 FROM ubuntu:18.04
 
 ARG OLS_VERSION
