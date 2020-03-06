@@ -27,7 +27,7 @@ script:
   - |
     if [ $TRAVIS_BRANCH == "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
         echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        cd $FOLDER && bash build.sh -ols $OLS_VERSION -php $PHP_VERSION -tag "$TAG" --push
+        cd $FOLDER && bash build.sh --ols $OLS_VERSION --php $PHP_VERSION --tag "$TAG" --push
     else
-        cd $FOLDER && bash build.sh -ols $OLS_VERSION -php $PHP_VERSION
+        cd $FOLDER && bash build.sh --ols $OLS_VERSION --php $PHP_VERSION
     fi    
