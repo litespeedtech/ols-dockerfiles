@@ -15,6 +15,7 @@ echow(){
 }
 
 help_message(){
+    echo -e "\033[1mOPTIONS\033[0m" 
     echow '-O, --ols [VERSION] -P, --php [lsphpVERSION]'
     echo "${EPACE}${EPACE}Example: bash build.sh --ols 1.6.9 --php lsphp7.4"
     echow '--push'

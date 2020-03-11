@@ -30,7 +30,7 @@ or specify the OpenLiteSpeed version with lsphp version
 ```
 docker pull litespeedtech/openlitespeed:1.6.9-lsphp74
 ```
-### Starting a Container
+### Start a Container
 ```
 docker run --name openlitespeed -p 7080:7080 -p 80:80 -p 443:443 -it litespeedtech/openlitespeed:latest
 ```
@@ -40,21 +40,34 @@ docker run -d --name openlitespeed -p 7080:7080 -p 80:80 -p 443:443 -it litespee
 ```
 Tip, you can get rid of `-p 7080:7080` from the command if you don’t need the web admin access.  
 
-### Verify
-We can add a sample page to make sure server is working correctly. First, we want to login to the container and add a test file. 
+### Add a sample page
+The server should start running successfully, and you should be able to log into the container. Add some files you want to display with the following command:
 ```
 docker exec -it openlitespeed bash
 ```
-We should see **/var/www/vhosts/** as our default `WORKDIR`. Since the default document root path is **/var/www/vhosts/localhost/html**. Simply add the following command to index.php file. 
+Your default `WORKDIR` should be `/var/www/vhosts/`, since the default document root path is `/var/www/vhosts/localhost/html`. Simply add the following command to `index.php`, then we can verify it from the browser with a public server IP address on both HTTP and HTTPS. 
 ```
 echo '<?php phpinfo();' > localhost/html/index.php
 ```
-Now we can verify it from the browser with a public server IP address or pointed Domain on both HTTP/HTTPS. 
 
-### Stopping a Container
+### Stop a Container
 Feel free to substitute the "openlitespeed" to the "Container_ID" if you did not define any name for the container.
 ```
 docker stop openlitespeed
+```
+
+## Customization
+Sometimes you may want to install more packages from the default image, or some other web server or PHP version which is not officially provided. You can build an image based on an existing image. Here’s how:
+  1. Download the dockerfile project 
+  2. `cd` into the project directory
+  3. Edit the Dockerfile here if necessary
+  4. Build, feeling free to substitute server and PHP versions to fit your needs 
+
+For example,
+```
+git clone https://github.com/litespeedtech/ols-dockerfiles.git
+cd ols-dockerfiles/template
+bash build.sh -L 1.6.8 -P lsphp73
 ```
 
 ## Support & Feedback
