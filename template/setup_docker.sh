@@ -13,8 +13,8 @@ listener HTTPS {
 
 vhTemplate docker {
   templateFile            conf/templates/docker.conf
-  listeners               Default, HTTP, HTTPS
-  note                    test
+  listeners               HTTP, HTTPS
+  note                    docker
 
   member localhost {
     vhDomain              localhost, *

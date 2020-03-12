@@ -212,6 +212,15 @@
   </listenerList>
   <vhTemplateList>
     <vhTemplate>
+      <name>docker</name>
+      <templateFile>$SERVER_ROOT/conf/templates/docker.xml</templateFile>
+      <listeners>HTTP, HTTPS</listeners>
+      <member>
+        <vhName>localhost</vhName>
+        <vhDomain>*, localhost</vhDomain>
+      </member>
+    </vhTemplate>
+    <vhTemplate>    
       <name>centralConfigLog</name>
       <templateFile>$SERVER_ROOT/conf/templates/ccl.xml</templateFile>
       <listeners>HTTP, HTTPS</listeners>
