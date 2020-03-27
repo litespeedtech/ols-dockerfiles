@@ -17,11 +17,11 @@ notifications:
 services:
   - docker
 env:
-  - OLS_VERSION=1.6.9 PHP_VERSION=lsphp74 FOLDER=template TAG=latest
-  - OLS_VERSION=1.6.9 PHP_VERSION=lsphp74 FOLDER=template
-  - OLS_VERSION=1.6.9 PHP_VERSION=lsphp73 FOLDER=template
-  - OLS_VERSION=1.5.11 PHP_VERSION=lsphp74 FOLDER=template  
-  - OLS_VERSION=1.5.11 PHP_VERSION=lsphp73 FOLDER=template
+  - OLS_VERSION=1.6.10 PHP_VERSION=lsphp74 FOLDER=template TAG=latest
+  - OLS_VERSION=1.6.10 PHP_VERSION=lsphp74 FOLDER=template
+  - OLS_VERSION=1.6.10 PHP_VERSION=lsphp73 FOLDER=template
+  - OLS_VERSION=1.5.12 PHP_VERSION=lsphp74 FOLDER=template  
+  - OLS_VERSION=1.5.12 PHP_VERSION=lsphp73 FOLDER=template
 
 script:
   - |
