@@ -71,7 +71,7 @@ bash build.sh -L 1.6.8 -P lsphp73
 
 ## Support & Feedback
 If you still have a question after using OpenLiteSpeed Docker, you have a few options.
-* Join [the GoLiteSpeed Slack community](litespeedtech.com/slack) for real-time discussion
+* Join [the GoLiteSpeed Slack community](https://litespeedtech.com/slack) for real-time discussion
 * Post to [the OpenLiteSpeed Forums](https://forum.openlitespeed.org/) for community support
 * Reporting any issue on [Github ols-dockerfiles](https://github.com/litespeedtech/ols-dockerfiles/issues) project
 
