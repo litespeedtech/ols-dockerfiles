@@ -1,0 +1,39 @@
+name: docker-build
+
+on:
+  push:
+    branches:
+      - master
+
+  pull_request:
+    branches:
+      - master
+env:
+  FOLDER: template
+  OLS_VERSION: 1.6.20
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: 
+        PHP_VERSION: [lsphp73, lsphp74]
+        TAG: [latest,'']
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker build and push
+        if: ${{ github.ref == 'refs/heads/master' && github.event_name == 'push' }}
+        run: |
+          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+          cd ${{ env.FOLDER }}
+          bash build.sh --ols ${{ env.OLS_VERSION }} --php ${{ matrix.PHP_VERSION }} --tag "${{ matrix.TAG }}" --push
+        env: 
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Docker build
+        if: ${{ github.ref == 'refs/heads/master' && github.event_name == 'pull_request' }}
+        run: |
+          cd ${{ env.FOLDER }}
+          bash build.sh --ols ${{ env.OLS_VERSION }} --php ${{ matrix.PHP_VERSION }} --tag ${{ matrix.TAG }}            
+
+  

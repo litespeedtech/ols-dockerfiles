@@ -1,5 +1,5 @@
 # OpenLiteSpeed Docker Container
-[![Build Status](https://travis-ci.com/litespeedtech/ols-docker-env.svg?branch=master)](https://hub.docker.com/r/litespeedtech/openlitespeed)
+[![Build Status](https://github.com/litespeedtech/ols-dockerfiles/workflows/docker-build/badge.svg)](https://github.com/litespeedtech/ols-dockerfiles/actions/new)
 [![docker pulls](https://img.shields.io/docker/pulls/litespeedtech/openlitespeed?style=flat&color=blue)](https://hub.docker.com/r/litespeedtech/openlitespeed)
 [<img src="https://img.shields.io/badge/slack-LiteSpeed-blue.svg?logo=slack">](litespeedtech.com/slack) 
 [<img src="https://img.shields.io/twitter/follow/litespeedtech.svg?label=Follow&style=social">](https://twitter.com/litespeedtech)
@@ -15,8 +15,8 @@ The system will regulary build both OpenLiteSpeed Edge and Latest stable version
 |Component|Version|
 | :-------------: | :-------------: |
 |Linux|Ubuntu 18.04|
-|OpenLiteSpeed|[Edge stable version](https://openlitespeed.org/release-log/version-1-6-x)|
-|OpenLiteSpeed|[Latest stable version](https://openlitespeed.org/release-log/version-1-5-x)|
+|OpenLiteSpeed|[Edge stable version](https://openlitespeed.org/release-log/version-1-7-x)|
+|OpenLiteSpeed|[Latest stable version](https://openlitespeed.org/release-log/version-1-6-x)|
 |PHP|[Latest stable version](http://rpms.litespeedtech.com/debian/)|
 
 ## Usage
@@ -27,7 +27,7 @@ docker pull litespeedtech/openlitespeed:latest
 ```
 or specify the OpenLiteSpeed version with lsphp version
 ```
-docker pull litespeedtech/openlitespeed:1.6.9-lsphp74
+docker pull litespeedtech/openlitespeed:1.6.20-lsphp74
 ```
 ### Start a Container
 ```
@@ -66,7 +66,7 @@ For example,
 ```
 git clone https://github.com/litespeedtech/ols-dockerfiles.git
 cd ols-dockerfiles/template
-bash build.sh -L 1.6.8 -P lsphp73
+bash build.sh -L 1.6.15 -P lsphp73
 ```
 
 ## Support & Feedback

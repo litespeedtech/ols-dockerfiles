@@ -17,9 +17,9 @@ echow(){
 help_message(){
     echo -e "\033[1mOPTIONS\033[0m" 
     echow '-O, --ols [VERSION] -P, --php [lsphpVERSION]'
-    echo "${EPACE}${EPACE}Example: bash build.sh --ols 1.6.9 --php lsphp7.4"
+    echo "${EPACE}${EPACE}Example: bash build.sh --ols 1.6.20 --php lsphp74"
     echow '--push'
-    echo "${EPACE}${EPACE}Example: build.sh --ols 1.6.9 --php lsphp74 --push, will push to the dockerhub"
+    echo "${EPACE}${EPACE}Example: build.sh --ols 1.6.20 --php lsphp74 --push, will push to the dockerhub"
     exit 0
 }
 
@@ -40,11 +40,11 @@ build_image(){
 
 test_image(){
     ID=$(docker run -d ${BUILDER}/${REPO}:${1}-${2})
-    docker exec -it ${ID} su -c 'mkdir -p /var/www/vhosts/localhost/html/ \
+    docker exec -i ${ID} su -c 'mkdir -p /var/www/vhosts/localhost/html/ \
     && echo "<?php phpinfo();" > /var/www/vhosts/localhost/html/index.php \
     && /usr/local/lsws/bin/lswsctrl restart'
-    HTTP=$(docker exec -it ${ID} curl -s -o /dev/null -Ik -w "%{http_code}" http://localhost)
-    HTTPS=$(docker exec -it ${ID} curl -s -o /dev/null -Ik -w "%{http_code}" https://localhost)
+    HTTP=$(docker exec -i ${ID} curl -s -o /dev/null -Ik -w "%{http_code}" http://localhost)
+    HTTPS=$(docker exec -i ${ID} curl -s -o /dev/null -Ik -w "%{http_code}" https://localhost)
     docker kill ${ID}
     if [[ "${HTTP}" != "200" || "${HTTPS}" != "200" ]]; then
         echo '[X] Test failed!'
