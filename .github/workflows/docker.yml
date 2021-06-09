@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix: 
-        PHP_VERSION: [lsphp73, lsphp74]
+        PHP_VERSION: [lsphp74, lsphp80]
         TAG: [latest,'']
     steps:
       - uses: actions/checkout@v2

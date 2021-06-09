@@ -14,9 +14,8 @@ The system will regulary build both OpenLiteSpeed Edge and Latest stable version
 
 |Component|Version|
 | :-------------: | :-------------: |
-|Linux|Ubuntu 18.04|
-|OpenLiteSpeed|[Edge stable version](https://openlitespeed.org/release-log/version-1-7-x)|
-|OpenLiteSpeed|[Latest stable version](https://openlitespeed.org/release-log/version-1-6-x)|
+|Linux|Ubuntu 20.04|
+|OpenLiteSpeed|[Latest stable version](https://openlitespeed.org/release-log/version-1-7-x)|
 |PHP|[Latest stable version](http://rpms.litespeedtech.com/debian/)|
 
 ## Usage
@@ -27,7 +26,7 @@ docker pull litespeedtech/openlitespeed:latest
 ```
 or specify the OpenLiteSpeed version with lsphp version
 ```
-docker pull litespeedtech/openlitespeed:1.6.20-lsphp74
+docker pull litespeedtech/openlitespeed:1.7.11-lsphp74
 ```
 ### Start a Container
 ```
@@ -66,7 +65,7 @@ For example,
 ```
 git clone https://github.com/litespeedtech/ols-dockerfiles.git
 cd ols-dockerfiles/template
-bash build.sh -L 1.6.15 -P lsphp73
+bash build.sh -O 1.7.11 -P lsphp80
 ```
 
 ## Support & Feedback
