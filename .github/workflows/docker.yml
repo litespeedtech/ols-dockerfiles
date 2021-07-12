@@ -10,7 +10,7 @@ on:
       - master
 env:
   FOLDER: template
-  OLS_VERSION: 1.7.11
+  OLS_VERSION: 1.7.12
 
 jobs:
   test:
