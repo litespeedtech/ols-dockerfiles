@@ -43,6 +43,7 @@ test_image(){
     docker exec -i ${ID} su -c 'mkdir -p /var/www/vhosts/localhost/html/ \
     && echo "<?php phpinfo();" > /var/www/vhosts/localhost/html/index.php \
     && /usr/local/lsws/bin/lswsctrl restart'
+    sleep 5
     HTTP=$(docker exec -i ${ID} curl -s -o /dev/null -Ik -w "%{http_code}" http://localhost)
     HTTPS=$(docker exec -i ${ID} curl -s -o /dev/null -Ik -w "%{http_code}" https://localhost)
     docker kill ${ID}
