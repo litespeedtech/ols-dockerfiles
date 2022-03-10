@@ -1,6 +1,7 @@
 name: docker-build
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
@@ -22,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Docker build and push
-        if: ${{ github.ref == 'refs/heads/master' && github.event_name == 'push' }}
+        if: ${{ (github.ref == 'refs/heads/master' && github.event_name == 'push') || (github.event_name == 'workflow_dispatch') }}
         run: |
           echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
           cd ${{ env.FOLDER }}
