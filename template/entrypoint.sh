@@ -11,7 +11,7 @@ chown 999:1000 /usr/local/lsws/admin/conf -R
 /usr/local/lsws/bin/lswsctrl start
 $@
 while true; do
-	if ! /usr/local/lsws/bin/lswsctrl status | grep 'litespeed is running with PID *' > /dev/null; then
+	if ! /usr/local/lsws/bin/lswsctrl status | /usr/bin/grep 'litespeed is running with PID *' > /dev/null; then
 		break
 	fi
 	sleep 60
