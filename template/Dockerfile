@@ -26,6 +26,7 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 RUN wget -O -  https://get.acme.sh | sh
 
 EXPOSE 7080
+ENV PATH="/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin"
 
 ADD docker.conf /usr/local/lsws/conf/templates/docker.conf
 ADD setup_docker.sh /usr/local/lsws/bin/setup_docker.sh
