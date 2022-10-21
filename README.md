@@ -4,7 +4,7 @@
 [<img src="https://img.shields.io/badge/slack-LiteSpeed-blue.svg?logo=slack">](litespeedtech.com/slack) 
 [<img src="https://img.shields.io/twitter/follow/litespeedtech.svg?label=Follow&style=social">](https://twitter.com/litespeedtech)
 
-Install a lightweight OpenLiteSpeed container using either the Edge or Stable version in Ubuntu 18.04 Linux.
+Install a lightweight OpenLiteSpeed container using either the Edge or Stable version in Ubuntu 22.04 Linux.
 
 ### Prerequisites
 *  [Install Docker](https://www.docker.com/)
@@ -14,7 +14,7 @@ The system will regulary build both OpenLiteSpeed Edge and Latest stable version
 
 |Component|Version|
 | :-------------: | :-------------: |
-|Linux|Ubuntu 20.04|
+|Linux|Ubuntu 22.04|
 |OpenLiteSpeed|[Latest stable version](https://openlitespeed.org/release-log/version-1-7-x)|
 |PHP|[Latest stable version](http://rpms.litespeedtech.com/debian/)|
 
