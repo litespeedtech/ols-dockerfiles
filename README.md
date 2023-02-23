@@ -26,7 +26,7 @@ docker pull litespeedtech/openlitespeed:latest
 ```
 or specify the OpenLiteSpeed version with lsphp version
 ```
-docker pull litespeedtech/openlitespeed:1.7.11-lsphp74
+docker pull litespeedtech/openlitespeed:1.7.16-lsphp81
 ```
 ### Start a Container
 ```
@@ -65,7 +65,7 @@ For example,
 ```
 git clone https://github.com/litespeedtech/ols-dockerfiles.git
 cd ols-dockerfiles/template
-bash build.sh -O 1.7.11 -P lsphp80
+bash build.sh -O 1.7.16 -P lsphp81
 ```
 
 ## Support & Feedback
