@@ -1,8 +1,8 @@
 # OpenLiteSpeed Docker Container
-[![Build Status](https://github.com/litespeedtech/ols-dockerfiles/workflows/docker-build/badge.svg)](https://github.com/litespeedtech/ols-dockerfiles/actions/new)
-[![docker pulls](https://img.shields.io/docker/pulls/litespeedtech/openlitespeed?style=flat&color=blue)](https://hub.docker.com/r/litespeedtech/openlitespeed)
-[<img src="https://img.shields.io/badge/slack-LiteSpeed-blue.svg?logo=slack">](litespeedtech.com/slack) 
-[<img src="https://img.shields.io/twitter/follow/litespeedtech.svg?label=Follow&style=social">](https://twitter.com/litespeedtech)
+[![Build Status](https://github.com/fpvjp/ols-dockerfiles/workflows/docker-build/badge.svg)](https://github.com/fpvjp/ols-dockerfiles/actions/new)
+[![docker pulls](https://img.shields.io/docker/pulls/fpvjp/openlitespeed?style=flat&color=blue)](https://hub.docker.com/r/fpvjp/openlitespeed)
+[<img src="https://img.shields.io/badge/slack-LiteSpeed-blue.svg?logo=slack">](fpvjp.com/slack) 
+[<img src="https://img.shields.io/twitter/follow/fpvjp.svg?label=Follow&style=social">](https://twitter.com/fpvjp)
 
 Install a lightweight OpenLiteSpeed container using either the Edge or Stable version in Ubuntu 22.04 Linux.
 
@@ -16,25 +16,25 @@ The system will regulary build both OpenLiteSpeed Edge and Latest stable version
 | :-------------: | :-------------: |
 |Linux|Ubuntu 22.04|
 |OpenLiteSpeed|[Latest stable version](https://openlitespeed.org/release-log/version-1-7-x)|
-|PHP|[Latest stable version](http://rpms.litespeedtech.com/debian/)|
+|PHP|[Latest stable version](http://rpms.fpvjp.com/debian/)|
 
 ## Usage
 ### Download an image
 Download the openlitespeed image, we can use latest for latest version
 ```
-docker pull litespeedtech/openlitespeed:latest
+docker pull fpvjp/openlitespeed:latest
 ```
 or specify the OpenLiteSpeed version with lsphp version
 ```
-docker pull litespeedtech/openlitespeed:1.7.16-lsphp81
+docker pull fpvjp/openlitespeed:1.7.16-lsphp81
 ```
 ### Start a Container
 ```
-docker run --name openlitespeed -p 7080:7080 -p 80:80 -p 443:443 -it litespeedtech/openlitespeed:latest
+docker run --name openlitespeed -p 7080:7080 -p 80:80 -p 443:443 -it fpvjp/openlitespeed:latest
 ```
 You can also run with Detached mode, like so:
 ```
-docker run -d --name openlitespeed -p 7080:7080 -p 80:80 -p 443:443 -it litespeedtech/openlitespeed:latest
+docker run -d --name openlitespeed -p 7080:7080 -p 80:80 -p 443:443 -it fpvjp/openlitespeed:latest
 ```
 Tip, you can get rid of `-p 7080:7080` from the command if you don’t need the web admin access.  
 
@@ -63,15 +63,15 @@ Sometimes you may want to install more packages from the default image, or some 
 
 For example,
 ```
-git clone https://github.com/litespeedtech/ols-dockerfiles.git
+git clone https://github.com/fpvjp/ols-dockerfiles.git
 cd ols-dockerfiles/template
 bash build.sh -O 1.7.16 -P lsphp81
 ```
 
 ## Support & Feedback
 If you still have a question after using OpenLiteSpeed Docker, you have a few options.
-* Join [the GoLiteSpeed Slack community](https://litespeedtech.com/slack) for real-time discussion
+* Join [the GoLiteSpeed Slack community](https://fpvjp.com/slack) for real-time discussion
 * Post to [the OpenLiteSpeed Forums](https://forum.openlitespeed.org/) for community support
-* Reporting any issue on [Github ols-dockerfiles](https://github.com/litespeedtech/ols-dockerfiles/issues) project
+* Reporting any issue on [Github ols-dockerfiles](https://github.com/fpvjp/ols-dockerfiles/issues) project
 
 **Pull requests are always welcome** 

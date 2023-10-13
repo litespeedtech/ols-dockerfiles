@@ -16,7 +16,7 @@ RUN apt-get install mysql-client $PHP_VERSION $PHP_VERSION-common $PHP_VERSION-m
 RUN ["/bin/bash", "-c", "if [[ $PHP_VERSION == lsphp7* ]]; then apt-get install $PHP_VERSION-json -y; fi"]
 
 RUN wget -O /usr/local/lsws/admin/misc/lsup.sh \
-    https://raw.githubusercontent.com/litespeedtech/openlitespeed/master/dist/admin/misc/lsup.sh && \
+    https://raw.githubusercontent.com/fpvjp/openlitespeed/master/dist/admin/misc/lsup.sh && \
     chmod +x /usr/local/lsws/admin/misc/lsup.sh
 
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \

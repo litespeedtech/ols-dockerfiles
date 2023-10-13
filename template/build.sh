@@ -4,7 +4,7 @@ PHP_VERSION=''
 PUSH=''
 CONFIG=''
 TAG=''
-BUILDER='litespeedtech'
+BUILDER='fpvjp'
 REPO='openlitespeed'
 EPACE='        '
 
@@ -59,8 +59,8 @@ test_image(){
 
 push_image(){
     if [ ! -z "${PUSH}" ]; then
-        if [ -f ~/.docker/litespeedtech/config.json ]; then
-            CONFIG=$(echo --config ~/.docker/litespeedtech)
+        if [ -f ~/.docker/fpvjp/config.json ]; then
+            CONFIG=$(echo --config ~/.docker/fpvjp)
         fi
         docker ${CONFIG} push ${BUILDER}/${REPO}:${1}-${2}
         if [ ! -z "${TAG}" ]; then
