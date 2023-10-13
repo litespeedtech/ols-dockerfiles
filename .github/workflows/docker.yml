@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix: 
-        PHP_VERSION: [lsphp74, lsphp80, lsphp81]
+        PHP_VERSION: [lsphp82]
         TAG: [latest,'']
     steps:
       - uses: actions/checkout@v2
@@ -36,5 +36,3 @@ jobs:
         run: |
           cd ${{ env.FOLDER }}
           bash build.sh --ols ${{ env.OLS_VERSION }} --php ${{ matrix.PHP_VERSION }} --tag ${{ matrix.TAG }}            
-
-  
