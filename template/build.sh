@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 OLS_VERSION=''
 PHP_VERSION=''
+NODE_VERSION=''
 PUSH=''
 CONFIG=''
 TAG=''
@@ -17,9 +18,9 @@ echow(){
 help_message(){
     echo -e "\033[1mOPTIONS\033[0m" 
     echow '-O, --ols [VERSION] -P, --php [lsphpVERSION]'
-    echo "${EPACE}${EPACE}Example: bash build.sh --ols 1.7.11 --php lsphp80"
+    echo "${EPACE}${EPACE}Example: bash build.sh --ols 1.7.18 --php lsphp80"
     echow '--push'
-    echo "${EPACE}${EPACE}Example: build.sh --ols 1.7.11 --php lsphp80 --push, will push to the dockerhub"
+    echo "${EPACE}${EPACE}Example: build.sh --ols 1.7.18 --php lsphp82 --push, will push to the dockerhub"
     exit 0
 }
 
@@ -34,7 +35,7 @@ build_image(){
         help_message
     else
         echo "${1} ${2}"
-        docker build . --tag ${BUILDER}/${REPO}:${1}-${2} --build-arg OLS_VERSION=${1} --build-arg PHP_VERSION=${2}
+        docker build . --tag ${BUILDER}/${REPO}:${1}-${2} --build-arg OLS_VERSION=${1} --build-arg PHP_VERSION=${2} --build-arg NODE_VERSION=${3}
     fi    
 }
 
@@ -73,9 +74,9 @@ push_image(){
 }
 
 main(){
-    build_image ${OLS_VERSION} ${PHP_VERSION}
-    test_image ${OLS_VERSION} ${PHP_VERSION}
-    push_image ${OLS_VERSION} ${PHP_VERSION} ${TAG}
+    build_image ${OLS_VERSION} ${PHP_VERSION} ${NODE_VERSION}
+    test_image ${OLS_VERSION} ${PHP_VERSION} ${NODE_VERSION}
+    push_image ${OLS_VERSION} ${PHP_VERSION} ${NODE_VERSION} ${TAG}
 }
 
 check_input ${1}
@@ -91,6 +92,10 @@ while [ ! -z "${1}" ]; do
         -[pP] | -php | --php) shift
             check_input "${1}"
             PHP_VERSION="${1}"
+            ;;
+        -[nN] | -node | --node) shift
+            check_input "${1}"
+            NODE_VERSION="${1}"
             ;;
         -[tT] | -tag | -TAG | --tag) shift
             TAG="${1}"

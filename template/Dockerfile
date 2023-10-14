@@ -2,9 +2,17 @@ FROM ubuntu:22.04
 
 ARG OLS_VERSION
 ARG PHP_VERSION
+ARG NODE_VERSION
 
+RUN apt-get update && apt-get install wget curl git cron tzdata -y
 
-RUN apt-get update && apt-get install wget curl cron tzdata -y
+RUN git clone https://github.com/nodenv/nodenv.git ~/.nodenv
+RUN echo 'export PATH="$HOME/.nodenv/bin:$PATH"' >> ~/.bashrc
+RUN echo 'eval "$(nodenv init -)"' >> ~/.bashrc
+RUN git clone https://github.com/nodenv/node-build.git $(nodenv root)/plugins/node-build
+RUN source ~/.bashrc
+RUN nodenv install 20.8.0
+RUN nodenv global 20.8.0
 
 RUN wget https://openlitespeed.org/preuse/openlitespeed-$OLS_VERSION.tgz && \
     tar xzf openlitespeed-$OLS_VERSION.tgz && cd openlitespeed && ./install.sh && \

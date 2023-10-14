@@ -16,7 +16,7 @@ The system will regulary build both OpenLiteSpeed Edge and Latest stable version
 | :-------------: | :-------------: |
 |Linux|Ubuntu 22.04|
 |OpenLiteSpeed|[Latest stable version](https://openlitespeed.org/release-log/version-1-7-x)|
-|PHP|[Latest stable version](http://rpms.fpvjp.com/debian/)|
+|PHP|[Latest stable version](http://rpms.litespeedtech.com/debian/)|
 
 ## Usage
 ### Download an image
@@ -26,7 +26,7 @@ docker pull fpvjp/openlitespeed:latest
 ```
 or specify the OpenLiteSpeed version with lsphp version
 ```
-docker pull fpvjp/openlitespeed:1.7.16-lsphp81
+docker pull fpvjp/openlitespeed:1.7.18-lsphp81
 ```
 ### Start a Container
 ```
@@ -65,7 +65,7 @@ For example,
 ```
 git clone https://github.com/fpvjp/ols-dockerfiles.git
 cd ols-dockerfiles/template
-bash build.sh -O 1.7.16 -P lsphp81
+bash build.sh -O 1.7.18 -P lsphp81
 ```
 
 ## Support & Feedback
