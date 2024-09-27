@@ -14,8 +14,8 @@ The system will regulary build both OpenLiteSpeed Edge and Latest stable version
 
 |Component|Version|
 | :-------------: | :-------------: |
-|Linux|Ubuntu 22.04|
-|OpenLiteSpeed|[Latest stable version](https://openlitespeed.org/release-log/version-1-7-x)|
+|Linux|Ubuntu 24.04|
+|OpenLiteSpeed|[Latest stable version](https://openlitespeed.org/release-log/version-1-8-x)|
 |PHP|[Latest stable version](http://rpms.litespeedtech.com/debian/)|
 
 ## Usage
@@ -26,7 +26,7 @@ docker pull litespeedtech/openlitespeed:latest
 ```
 or specify the OpenLiteSpeed version with lsphp version
 ```
-docker pull litespeedtech/openlitespeed:1.7.16-lsphp81
+docker pull litespeedtech/openlitespeed:1.7.19-lsphp83
 ```
 ### Start a Container
 ```
