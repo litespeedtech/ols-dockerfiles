@@ -36,7 +36,7 @@ ADD httpd_config.xml /usr/local/lsws/conf/httpd_config.xml
 ADD htpasswd /usr/local/lsws/admin/conf/htpasswd
 
 RUN /usr/local/lsws/bin/setup_docker.sh && rm /usr/local/lsws/bin/setup_docker.sh
-RUN chown 999:999 /usr/local/lsws/conf -R
+RUN chown 994:994 /usr/local/lsws/conf -R
 RUN cp -RP /usr/local/lsws/conf/ /usr/local/lsws/.conf/
 RUN cp -RP /usr/local/lsws/admin/conf /usr/local/lsws/admin/.conf/
 #RUN sed -i "s|fcgi-bin/lsphp|/usr/local/lsws/$PHP_VERSION/bin/lsphp|g" /usr/local/lsws/conf/httpd_config.conf

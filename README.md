@@ -26,7 +26,7 @@ docker pull litespeedtech/openlitespeed:latest
 ```
 or specify the OpenLiteSpeed version with lsphp version
 ```
-docker pull litespeedtech/openlitespeed:1.7.19-lsphp83
+docker pull litespeedtech/openlitespeed:1.8.3-lsphp83
 ```
 ### Start a Container
 ```
