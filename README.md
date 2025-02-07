@@ -4,7 +4,7 @@
 [<img src="https://img.shields.io/badge/slack-LiteSpeed-blue.svg?logo=slack">](litespeedtech.com/slack) 
 [<img src="https://img.shields.io/twitter/follow/litespeedtech.svg?label=Follow&style=social">](https://twitter.com/litespeedtech)
 
-Install a lightweight OpenLiteSpeed container using either the Edge or Stable version in Ubuntu 22.04 Linux.
+Install a lightweight OpenLiteSpeed container using either the Edge or Stable version in Ubuntu 24.04 Linux.
 
 ### Prerequisites
 *  [Install Docker](https://www.docker.com/)

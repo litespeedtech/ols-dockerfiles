@@ -1,0 +1,40 @@
+name: docker-build-arm
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+  pull_request:
+    branches:
+      - master
+env:
+  FOLDER: template
+  OLS_VERSION: 1.8.2
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04-arm
+    strategy:
+      matrix: 
+        PHP_VERSION: [lsphp81, lsphp82, lsphp83]
+        TAG: [latest,'']
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker build and push
+        if: ${{ (github.ref == 'refs/heads/master' && github.event_name == 'push') || (github.event_name == 'workflow_dispatch') }}
+        run: |
+          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+          cd ${{ env.FOLDER }}
+          bash build.sh --ols ${{ env.OLS_VERSION }} --php ${{ matrix.PHP_VERSION }} --tag "${{ matrix.TAG }}" --arch "aarch64" --push
+        env: 
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Docker build
+        if: ${{ github.ref == 'refs/heads/master' && github.event_name == 'pull_request' }}
+        run: |
+          cd ${{ env.FOLDER }}
+          bash build.sh --ols ${{ env.OLS_VERSION }} --php ${{ matrix.PHP_VERSION }} --tag ${{ matrix.TAG }} --arch aarch64
+
+  

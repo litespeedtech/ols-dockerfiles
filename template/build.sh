@@ -4,6 +4,7 @@ PHP_VERSION=''
 PUSH=''
 CONFIG=''
 TAG=''
+ARCH=''
 BUILDER='litespeedtech'
 REPO='openlitespeed'
 EPACE='        '
@@ -20,6 +21,8 @@ help_message(){
     echo "${EPACE}${EPACE}Example: bash build.sh --ols 1.8.2 --php lsphp83"
     echow '--push'
     echo "${EPACE}${EPACE}Example: build.sh --ols 1.8.2 --php lsphp83 --push, will push to the dockerhub"
+    echow '--arch [ARCH] (aarch64, x86_64)'
+    echo "${EPACE}${EPACE}Example: build.sh --ols 1.8.2 --php lsphp83 --arch aarch64, will build for ARM"
     exit 0
 }
 
@@ -34,7 +37,7 @@ build_image(){
         help_message
     else
         echo "${1} ${2}"
-        docker build . --tag ${BUILDER}/${REPO}:${1}-${2} --build-arg OLS_VERSION=${1} --build-arg PHP_VERSION=${2}
+        docker build . --tag ${BUILDER}/${REPO}:${1}-${2} --build-arg OLS_VERSION=${1} --build-arg PHP_VERSION=${2} --build-arg ARCH=${ARCH}
     fi    
 }
 
@@ -94,7 +97,11 @@ while [ ! -z "${1}" ]; do
             ;;
         -[tT] | -tag | -TAG | --tag) shift
             TAG="${1}"
-            ;;       
+            ;;
+        -[aA] | -arch | --arch) shift
+            check_input "${1}"
+            ARCH="${1}"
+            ;;
         --push ) shift
             PUSH=true
             ;;            
