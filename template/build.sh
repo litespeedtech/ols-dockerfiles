@@ -69,8 +69,9 @@ build_push_image(){
             CONFIG=$(echo --config ~/.docker/litespeedtech)
         fi
         #docker ${CONFIG} push ${BUILDER}/${REPO}:${1}-${2}
-        docker buildx build . --platform ${ARCH} --tag ${BUILDER}/${REPO}:${1}-${2} --build-arg OLS_VERSION=${1} --build-arg PHP_VERSION=${2} --output=type=registry --push
-        if [ ! -z "${TAG}" ]; then
+        if [ -z "${TAG}" ]; then
+            docker buildx build . --platform ${ARCH} --tag ${BUILDER}/${REPO}:${1}-${2} --build-arg OLS_VERSION=${1} --build-arg PHP_VERSION=${2} --output=type=registry --push
+        else
             #docker tag ${BUILDER}/${REPO}:${1}-${2} ${BUILDER}/${REPO}:${3}
             #docker ${CONFIG} push ${BUILDER}/${REPO}:${3}
             docker buildx build . --platform ${ARCH} --tag ${BUILDER}/${REPO}:${3} --build-arg OLS_VERSION=${1} --build-arg PHP_VERSION=${2} --output=type=registry --push
