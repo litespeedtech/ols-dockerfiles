@@ -11,7 +11,7 @@ on:
       - master
 env:
   FOLDER: template
-  OLS_VERSION: 1.8.2
+  OLS_VERSION: 1.8.3
 
 jobs:
   test:
