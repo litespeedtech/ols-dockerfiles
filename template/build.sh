@@ -18,11 +18,11 @@ echow(){
 help_message(){
     echo -e "\033[1mOPTIONS\033[0m" 
     echow '-O, --ols [VERSION] -P, --php [lsphpVERSION]'
-    echo "${EPACE}${EPACE}Example: bash build.sh --ols 1.8.2 --php lsphp83"
+    echo "${EPACE}${EPACE}Example: bash build.sh --ols 1.8.4 --php lsphp84"
     echow '--push'
-    echo "${EPACE}${EPACE}Example: build.sh --ols 1.8.2 --php lsphp83 --push, will push to the dockerhub"
+    echo "${EPACE}${EPACE}Example: build.sh --ols 1.8.4 --php lsphp84 --push, will push to the dockerhub"
     echow '--arch'
-    echo "${EPACE}${EPACE}Example: build.sh --ols 1.8.2 --php lsphp83 --arch linux/amd64,linux/arm64, will build image for both amd64 and arm64, otherwise linux/amd64 will be applied."    
+    echo "${EPACE}${EPACE}Example: build.sh --ols 1.8.4 --php lsphp84 --arch linux/amd64,linux/arm64, will build image for both amd64 and arm64, otherwise linux/amd64 will be applied."    
     exit 0
 }
 
@@ -37,8 +37,7 @@ build_image(){
         help_message
     else
         echo "Build image: ${1} ${2}"
-        #docker build . --tag ${BUILDER}/${REPO}:${1}-${2} --build-arg OLS_VERSION=${1} --build-arg PHP_VERSION=${2}
-        docker buildx build . --platform ${ARCH} --tag ${BUILDER}/${REPO}:${1}-${2} --build-arg OLS_VERSION=${1} --build-arg PHP_VERSION=${2} --output=type=registry
+        docker buildx build . --platform ${ARCH} --tag ${BUILDER}/${REPO}:${1}-${2} --build-arg OLS_VERSION=${1} --build-arg PHP_VERSION=${2}
     fi    
 }
 
@@ -68,12 +67,9 @@ build_push_image(){
         if [ -f ~/.docker/litespeedtech/config.json ]; then
             CONFIG=$(echo --config ~/.docker/litespeedtech)
         fi
-        #docker ${CONFIG} push ${BUILDER}/${REPO}:${1}-${2}
         if [ -z "${TAG}" ]; then
             docker buildx build . --platform ${ARCH} --tag ${BUILDER}/${REPO}:${1}-${2} --build-arg OLS_VERSION=${1} --build-arg PHP_VERSION=${2} --output=type=registry --push
         else
-            #docker tag ${BUILDER}/${REPO}:${1}-${2} ${BUILDER}/${REPO}:${3}
-            #docker ${CONFIG} push ${BUILDER}/${REPO}:${3}
             docker buildx build . --platform ${ARCH} --tag ${BUILDER}/${REPO}:${3} --build-arg OLS_VERSION=${1} --build-arg PHP_VERSION=${2} --output=type=registry --push
         fi
     else
