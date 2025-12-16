@@ -22,8 +22,10 @@ RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
 
 RUN wget -O - https://repo.litespeed.sh | bash
 
-RUN apt-get install mysql-client $PHP_VERSION $PHP_VERSION-common $PHP_VERSION-mysql $PHP_VERSION-opcache \
+RUN apt-get update && apt-get install mysql-client $PHP_VERSION $PHP_VERSION-common $PHP_VERSION-mysql \
     $PHP_VERSION-curl $PHP_VERSION-imagick $PHP_VERSION-redis $PHP_VERSION-memcached $PHP_VERSION-intl -y
+
+RUN ["/bin/bash", "-c", "case \"$PHP_VERSION\" in lsphp81|lsphp82|lsphp83|lsphp84) apt-get install ${PHP_VERSION}-opcache -y ;; esac"]
 
 RUN ["/bin/bash", "-c", "if [[ $PHP_VERSION == lsphp7* ]]; then apt-get install $PHP_VERSION-json -y; fi"]
 
