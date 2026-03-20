@@ -21,7 +21,7 @@ help_message(){
     echo -e "\033[1mOPTIONS\033[0m" 
     echow '-O, --ols [VERSION] -P, --php [lsphpVERSION]'
     echo "${EPACE}${EPACE}Examples: bash build.sh --ols 1.8.5 --php lsphp84"
-    echo "${EPACE}${EPACE}          bash build.sh --ols 1.8.5 --php lsphp7.4 (normalized to lsphp74)"
+    echo "${EPACE}${EPACE}          bash build.sh --ols 1.8.5 --php lsphp74 (Ubuntu22.04)"
     echow '--push'
     echo "${EPACE}${EPACE}Example: build.sh --ols 1.8.4 --php lsphp84 --push, will push to the dockerhub"
     echow '--arch'
