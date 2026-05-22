@@ -39,7 +39,7 @@ RUN set -eux; \
         $PHP_VERSION-curl $PHP_VERSION-imagick $PHP_VERSION-redis \
         $PHP_VERSION-memcached $PHP_VERSION-intl; \
     case "$PHP_VERSION" in \
-        lsphp81|lsphp82|lsphp83|lsphp84|lsphp85) \
+        lsphp81|lsphp82|lsphp83|lsphp84) \
             apt-get install -y --no-install-recommends "${PHP_VERSION}-opcache" ;; \
         lsphp7*) \
             apt-get install -y --no-install-recommends "${PHP_VERSION}-json" ;; \
