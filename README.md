@@ -4,7 +4,7 @@
 [<img src="https://img.shields.io/badge/slack-LiteSpeed-blue.svg?logo=slack">](litespeedtech.com/slack) 
 [<img src="https://img.shields.io/twitter/follow/litespeedtech.svg?label=Follow&style=social">](https://twitter.com/litespeedtech)
 
-Install a lightweight OpenLiteSpeed container using either the Edge or Stable version in Ubuntu 24.04 Linux.
+Install a lightweight OpenLiteSpeed container using either the Edge or Stable version in Ubuntu 26.04 Linux.
 
 ### Prerequisites
 *  [Install Docker](https://www.docker.com/)
@@ -14,7 +14,7 @@ The system will regulary build both OpenLiteSpeed Edge and Latest stable version
 
 |Component|Version|
 | :-------------: | :-------------: |
-|Linux|Ubuntu 24.04|
+|Linux|Ubuntu 26.04|
 |OpenLiteSpeed|[Latest stable version](https://openlitespeed.org/release-log/version-1-8-x)|
 |PHP|[Latest stable version](http://rpms.litespeedtech.com/debian/)|
 
@@ -26,7 +26,7 @@ docker pull litespeedtech/openlitespeed:latest
 ```
 or specify the OpenLiteSpeed version with lsphp version
 ```
-docker pull litespeedtech/openlitespeed:1.8.5-lsphp84
+docker pull litespeedtech/openlitespeed:1.8.5-lsphp85
 ```
 ### Start a Container
 ```
@@ -65,7 +65,7 @@ For example,
 ```
 git clone https://github.com/litespeedtech/ols-dockerfiles.git
 cd ols-dockerfiles/template
-bash build.sh -O 1.8.5 -P lsphp84
+bash build.sh -O 1.8.5 -P lsphp85
 ```
 
 ## Support & Feedback

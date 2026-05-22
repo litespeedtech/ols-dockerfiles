@@ -21,7 +21,7 @@ jobs:
         PHP_VERSION: [lsphp82,lsphp83,lsphp84,lsphp85]
         TAG: [latest,'']
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v3

@@ -9,7 +9,7 @@ REPO='openlitespeed'
 EPACE='        '
 ARCH='linux/amd64'
 BUILD_PLATFORM='linux/amd64'
-UBUNTU_VERSION='24.04'
+UBUNTU_VERSION='26.04'
 
 echow(){
     FLAG=${1}
@@ -20,12 +20,12 @@ echow(){
 help_message(){
     echo -e "\033[1mOPTIONS\033[0m" 
     echow '-O, --ols [VERSION] -P, --php [lsphpVERSION]'
-    echo "${EPACE}${EPACE}Examples: bash build.sh --ols 1.8.5 --php lsphp84"
+    echo "${EPACE}${EPACE}Examples: bash build.sh --ols 1.8.5 --php lsphp85"
     echo "${EPACE}${EPACE}          bash build.sh --ols 1.8.5 --php lsphp74 (Ubuntu22.04)"
     echow '--push'
-    echo "${EPACE}${EPACE}Example: build.sh --ols 1.8.4 --php lsphp84 --push, will push to the dockerhub"
+    echo "${EPACE}${EPACE}Example: build.sh --ols 1.8.4 --php lsphp85 --push, will push to the dockerhub"
     echow '--arch'
-    echo "${EPACE}${EPACE}Example: build.sh --ols 1.8.4 --php lsphp84 --arch linux/amd64,linux/arm64, will build image for both amd64 and arm64, otherwise linux/amd64 will be applied."
+    echo "${EPACE}${EPACE}Example: build.sh --ols 1.8.4 --php lsphp85 --arch linux/amd64,linux/arm64, will build image for both amd64 and arm64, otherwise linux/amd64 will be applied."
     exit 0
 }
 
@@ -55,7 +55,7 @@ resolve_ubuntu_version(){
     if [[ "${PHP_VERSION}" == lsphp7* ]]; then
         UBUNTU_VERSION='22.04'
     else
-        UBUNTU_VERSION='24.04'
+        UBUNTU_VERSION="${UBUNTU_VERSION}"
     fi
 }
 
@@ -79,9 +79,8 @@ test_image(){
     echo "Test image"
     ID=$(docker run -d --platform "${BUILD_PLATFORM}" "${BUILDER}/${REPO}:${1}-${2}")
     docker exec -i "${ID}" su -c 'mkdir -p /var/www/vhosts/localhost/html/ \
-    && echo "<?php phpinfo();" > /var/www/vhosts/localhost/html/index.php \
-    && /usr/local/lsws/bin/lswsctrl restart'
-    sleep 5
+    && echo "<?php phpinfo();" > /var/www/vhosts/localhost/html/index.php'
+    sleep 2
     HTTP=$(docker exec -i "${ID}" curl -s -o /dev/null -Ik -w "%{http_code}" http://localhost)
     HTTPS=$(docker exec -i "${ID}" curl -s -o /dev/null -Ik -w "%{http_code}" https://localhost)
     docker kill "${ID}" >/dev/null 2>&1 || true
