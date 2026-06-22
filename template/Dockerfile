@@ -1,4 +1,4 @@
-ARG UBUNTU_VERSION=24.04
+ARG UBUNTU_VERSION=26.04
 FROM ubuntu:${UBUNTU_VERSION}
 ARG OLS_VERSION
 ARG PHP_VERSION
@@ -8,7 +8,7 @@ ENV LS_FD='/usr/local/lsws'
 ENV PHPINI_PATH="$LS_FD/$PHP_VERSION/etc/php/*/litespeed/php.ini"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        wget curl cron tzdata ca-certificates \
+        wget curl cron unzip ed tzdata ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 RUN set -eux; \
