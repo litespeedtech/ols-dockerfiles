@@ -33,7 +33,7 @@ jobs:
         run: |
           echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
           cd ${{ env.FOLDER }}
-          bash build.sh --ols ${{ env.OLS_VERSION }} --php ${{ matrix.PHP_VERSION }} --arch 'linux/amd64,linux/arm64' --tag "${{ matrix.TAG }}" --push
+          bash build.sh --ols ${{ env.OLS_VERSION }} --php ${{ matrix.PHP_VERSION }} --arch 'linux/amd64,linux/arm64' --tag "${{ matrix.TAG }}" ${{ matrix.TAG == 'latest' && format('--tag-alias latest-{0}', matrix.PHP_VERSION) || '' }} --push
         env: 
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}

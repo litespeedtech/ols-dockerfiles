@@ -4,6 +4,7 @@ PHP_VERSION=''
 PUSH=''
 CONFIG=''
 TAG=''
+TAG_ALIAS=''
 BUILDER='litespeedtech'
 REPO='openlitespeed'
 EPACE='        '
@@ -100,11 +101,16 @@ build_push_image(){
         if [ -f ~/.docker/litespeedtech/config.json ]; then
             CONFIG=$(echo --config ~/.docker/litespeedtech)
         fi
+        local tags=()
         if [ -z "${TAG}" ]; then
-            docker buildx build . --platform "${ARCH}" --tag "${BUILDER}/${REPO}:${1}-${2}" --build-arg OLS_VERSION="${1}" --build-arg PHP_VERSION="${2}" --build-arg UBUNTU_VERSION="${UBUNTU_VERSION}" --output=type=registry --push
+            tags+=(--tag "${BUILDER}/${REPO}:${1}-${2}")
         else
-            docker buildx build . --platform "${ARCH}" --tag "${BUILDER}/${REPO}:${3}" --build-arg OLS_VERSION="${1}" --build-arg PHP_VERSION="${2}" --build-arg UBUNTU_VERSION="${UBUNTU_VERSION}" --output=type=registry --push
+            tags+=(--tag "${BUILDER}/${REPO}:${3}")
         fi
+        if [ -n "${TAG_ALIAS}" ]; then
+            tags+=(--tag "${BUILDER}/${REPO}:${TAG_ALIAS}")
+        fi
+        docker buildx build . --platform "${ARCH}" "${tags[@]}" --build-arg OLS_VERSION="${1}" --build-arg PHP_VERSION="${2}" --build-arg UBUNTU_VERSION="${UBUNTU_VERSION}" --output=type=registry --push
     else
         echo 'Skip Push.'    
     fi
@@ -139,6 +145,10 @@ while [ ! -z "${1}" ]; do
         -[tT] | -tag | -TAG | --tag) shift
             TAG="${1}"
             ;;       
+        --tag-alias) shift
+            check_input "${1}"
+            TAG_ALIAS="${1}"
+            ;;
         -[aA] | -arch | --arch) shift
             check_input "${1}"
             ARCH="${1}"
